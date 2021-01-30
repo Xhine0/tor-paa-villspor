@@ -16,6 +16,9 @@ public class CursorDisplay : MonoBehaviour
     [SerializeField]
     private Texture2D grabCursor;
 
+    [SerializeField]
+    private Texture2D nextCursor;
+
     private void Start()
     {
         SetDefaultCursor();
@@ -29,5 +32,10 @@ public class CursorDisplay : MonoBehaviour
     public void SetGrabCursor()
     {
         Cursor.SetCursor(grabCursor, hotspot, cursorMode);
+    }
+
+    public void SetNextCursor()
+    {
+        Cursor.SetCursor(nextCursor, hotspot, cursorMode);
     }
 }
