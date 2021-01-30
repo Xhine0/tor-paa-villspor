@@ -39,7 +39,6 @@ public class Pickupable : MonoBehaviour
         holding = true;
         prevOrder = sr.sortingOrder;
         sr.sortingOrder = heldSortOrder;
-        StartCoroutine(Held());
     }
 
     private void OnMouseUp()
@@ -47,34 +46,12 @@ public class Pickupable : MonoBehaviour
         hi.holding = null;
         holding = false;
         sr.sortingOrder = prevOrder;
-        StopAllCoroutines();
-        StartCoroutine(ResolveDrop());
+
+        transform.position = prevPos;
     }
 
     private void OnMouseExit()
     {
         hi.SetDefaultCursor();
     }
-
-    IEnumerator Held()
-    {
-        while(holding)
-        {
-            yield return new WaitForEndOfFrame();
-            var mousePos = Input.mousePosition;
-            Vector2 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
-            transform.position = worldMousePos;
-        }
-    }
-
-    IEnumerator ResolveDrop()
-    {
-        yield return new WaitForEndOfFrame();
-        // TODO: resolve outcome
-        // if (in inventory slot)
-        //      insert to inventory
-        // else
-        transform.position = prevPos;
-    }
-
 }

@@ -27,6 +27,16 @@ public class HandInteractor : MonoBehaviour
         SetDefaultCursor();
     }
 
+    private void Update()
+    {
+        if (!holding)
+            return;
+
+        var mousePos = Input.mousePosition;
+        Vector2 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        holding.transform.position = worldMousePos;
+    }
+
     public void SetDefaultCursor()
     {
         Cursor.SetCursor(defaultCursor, hotspot, cursorMode);
