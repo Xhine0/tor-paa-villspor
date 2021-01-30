@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Overlay.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Prototyping/Room1.unity
+    guid: 3bad2480bcc7b074480d5165b9c7dfc4
+  - enabled: 1
+    path: Assets/Scenes/Prototyping/Room2.unity
+    guid: 636c9e64600a59741926c8c4ff23971e
   m_configObjects: {}
