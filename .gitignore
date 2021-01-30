@@ -1,6 +1,7 @@
 # Project-specific
 *.ceol*
 /[Aa]ssets/Audio/**/Recordings
+/[Aa]ssets/Audio/**/Recordings.meta
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #

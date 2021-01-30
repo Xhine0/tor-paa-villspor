@@ -33,12 +33,10 @@ public class DialogRenderer : MonoBehaviour {
 		if (setRoot) root = node;
 		this.node = node;
 		output.text = "";
-
-		Debug.Log("Rendering " + node.options.Length + " options (onto " + buttons.Length + " dialog buttons)");
+		
 		for (int i = 0; i < buttons.Length; i++) {
 			bool drawOption = i < node.options.Length;
 			if (drawOption) {
-				Debug.Log("Option " + i + ": " + node.options[i].prompt);
 				buttons[i].GetComponentInChildren<Text>().text = node.options[i].prompt;
 				buttons[i].node = node.options[i];
 			}
