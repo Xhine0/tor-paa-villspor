@@ -11,11 +11,13 @@ public class DialogRenderer : MonoBehaviour {
 
 	private void Start() {
 		output = GetComponent<Text>();
+		PlayerPrefs.SetString("activeScene", "Room1");
 	}
 
 	public void Render(string message) {
 		charI = 0;
 		timer = Time.time;
+		this.message = message;
 		output.text = "";
 	}
 
