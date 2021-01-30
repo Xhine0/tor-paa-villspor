@@ -9,6 +9,8 @@ public class ButtonHelper : MonoBehaviour {
 	}
 
 	public void DisplayMessage(string message) {
-		FindObjectOfType<DialogRenderer>().Render(message);
+		DialogNode node = DialogNode.Default();
+		node.message = message;
+		FindObjectOfType<DialogRenderer>().Render(node);
 	}
 }
