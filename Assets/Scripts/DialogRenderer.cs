@@ -4,20 +4,24 @@ using UnityEngine.UI;
 public class DialogRenderer : MonoBehaviour {
 	public float writeSpeed = 50;
 
+	private Image panel;
 	private Text output;
 	private float timer;
 	private string message = "";
 	private int charI;
 
 	private void Start() {
-		output = GetComponent<Text>();
-		PlayerPrefs.SetString("activeScene", "Room1");
+		panel = GetComponent<Image>();
+		output = GetComponentInChildren<Text>();
+		panel.enabled = false;
 	}
 
-	public void Render(string message) {
+	public void Render(string message=null) {
 		charI = 0;
 		timer = Time.time;
-		this.message = message;
+
+		panel.enabled = message != null;
+		this.message = message ?? "";
 		output.text = "";
 	}
 
