@@ -2,29 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(SpriteRenderer))]
 public class PlayerMovement : MonoBehaviour
 {
+    private enum WalkDir
+    {
+        Front = 0,
+        Back,
+        Side
+    }
+
     [SerializeField]
     private float colliderResolveDist = 0.05f;
 
     private Rigidbody2D rb;
+    private Animator anim;
+    private SpriteRenderer sr;
 
     private bool isWalking;
+    private WalkDir walkDir = WalkDir.Front;
+
     private Vector2 targetPos;
     private Vector2 startPos;
     private float clickTime;
-    private float destinationTime; 
+    private float destinationTime;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         HandleMouse();
+
+        // Always set this because we are lazy
+        anim.SetBool("isWalking", isWalking);
+        anim.SetInteger("walkDir", (int) walkDir);
 
         if (isWalking) {
             float lerpPos = Mathf.Abs(Time.realtimeSinceStartup - clickTime) / destinationTime;
@@ -44,15 +61,34 @@ public class PlayerMovement : MonoBehaviour
         targetPos = Camera.main.ScreenToWorldPoint(mousePos);
         startPos = rb.position;
         clickTime = Time.realtimeSinceStartup;
-        destinationTime = (targetPos - startPos).magnitude;
+        var walkDirVector = targetPos - startPos;
+        destinationTime = walkDirVector.magnitude;
         isWalking = true;
+
+        // Calculate walk direction
+        float angle = Vector2.SignedAngle(Vector2.right, walkDirVector.normalized);
+        if (angle > -45 && angle < 45)
+        {
+            walkDir = WalkDir.Side;
+            sr.flipX = false;
+        } else if (angle > 135 && angle <= 180 || angle >= -180 && angle < -135)
+        {
+            walkDir = WalkDir.Side;
+            sr.flipX = true;
+        } else if (angle >= 45 && angle <= 135)
+        {
+            walkDir = WalkDir.Back;
+        } else if (angle <= -45 && angle >= -135)
+        {
+            walkDir = WalkDir.Front;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector2 cPos = collision.contacts[0].point;
-        var resolveVec = (rb.position - cPos).normalized;
-        rb.position += resolveVec * colliderResolveDist;
+        Vector2 cPos = collision.collider.ClosestPoint(transform.position);
+        var resolveVec = (targetPos - startPos).normalized;
+        rb.position -= resolveVec * colliderResolveDist;
         isWalking = false;
     }
 
