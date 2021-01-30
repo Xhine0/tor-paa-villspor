@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6921aec269d4c349917e2965f37b1e9, type: 3}
+  m_Name: Car
+  m_EditorClassIdentifier: 
+  message: "K\xE6m faen har kj\xF8rt ned pl\xE6nen min?~~~ \xC5,~ ja...~ \xE6 skulla
+    kanskje ikka ha kj\xF8rt hjem i g\xE5r"
+  prompt: 
+  clip: {fileID: 8300000, guid: 1aa2a5aad2e727b499d243b00845e351, type: 3}
+  loop: 0
+  options: []

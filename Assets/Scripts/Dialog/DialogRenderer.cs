@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class DialogRenderer : MonoBehaviour {
 	public float writeSpeed = 50;
+	public AudioSource speaker;
 	public Image panel;
 	public Text output;
 	public DialogButton[] buttons;
@@ -24,6 +25,8 @@ public class DialogRenderer : MonoBehaviour {
 		charI = 0;
 		timer = Time.time;
 
+		output.text = "";
+		speaker.Stop();
 		panel.gameObject.SetActive(node != null);
 		if (node == null) {
 			node = DialogNode.Default();
@@ -32,7 +35,7 @@ public class DialogRenderer : MonoBehaviour {
 
 		if (setRoot) root = node;
 		this.node = node;
-		output.text = "";
+		if (node.clip != null) speaker.PlayOneShot(node.clip);
 		
 		for (int i = 0; i < buttons.Length; i++) {
 			bool drawOption = i < node.options.Length;
@@ -48,7 +51,7 @@ public class DialogRenderer : MonoBehaviour {
 		if (panel.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0)) {
 			if (charI < node.message.Length) {
 				charI = node.message.Length;
-				output.text = node.message;
+				output.text = node.message.Replace("~", "");
 			} else if (node.options.Length == 0) {
 				// Leaf reached
 				Render(node.loop ? root : null);
@@ -57,7 +60,14 @@ public class DialogRenderer : MonoBehaviour {
 
 		if (Time.time - timer >= 1f / writeSpeed && charI < node.message.Length) {
 			timer = Time.time;
-			output.text += node.message[charI];
+			char c = node.message[charI];
+
+			if (c == '~') {
+				timer += 1;
+			}
+			else {
+				output.text += c;
+			}
 			charI++;
 		}
 	}
