@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class DialogRenderer : MonoBehaviour {
 	public float writeSpeed = 50;
 	public AudioSource speaker;
-	public Image panel;
+	public GameObject panel;
+	public Text title;
 	public Text output;
 	public DialogButton[] buttons;
 
@@ -18,20 +19,21 @@ public class DialogRenderer : MonoBehaviour {
 		root = DialogNode.Default();
 		node = DialogNode.Default();
 		
-		panel.gameObject.SetActive(false);
+		panel.SetActive(false);
 	}
 
 	public void Render(DialogNode node, bool setRoot=true) {
 		charI = 0;
 		timer = Time.time;
 
-		output.text = "";
 		speaker.Stop();
-		panel.gameObject.SetActive(node != null);
+		panel.SetActive(node != null);
 		if (node == null) {
 			node = DialogNode.Default();
 			return;
 		}
+		output.text = "";
+		title.text = node.title;
 
 		if (setRoot) root = node;
 		this.node = node;
@@ -48,7 +50,7 @@ public class DialogRenderer : MonoBehaviour {
 	}
 
 	private void Update() {
-		if (panel.gameObject.activeInHierarchy && Input.GetMouseButtonDown(0)) {
+		if (panel.activeInHierarchy && Input.GetMouseButtonDown(0)) {
 			if (charI < node.message.Length) {
 				charI = node.message.Length;
 				output.text = node.message.Replace("~", "");
