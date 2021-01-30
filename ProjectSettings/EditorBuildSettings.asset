@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ThorsLivingroom.unity
     guid: 234dd7dd82610d14a8509b207e7953ee
   - enabled: 1
+    path: Assets/Scenes/ThorsGarden.unity
+    guid: 6bb96d759b837a6428b01d1f8073e111
+  - enabled: 1
     path: Assets/Scenes/Prototyping/Room2.unity
     guid: 636c9e64600a59741926c8c4ff23971e
   m_configObjects: {}
