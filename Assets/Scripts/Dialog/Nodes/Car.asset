@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6921aec269d4c349917e2965f37b1e9, type: 3}
   m_Name: Car
   m_EditorClassIdentifier: 
+  title: Tor
   message: "K\xE6m faen har kj\xF8rt ned pl\xE6nen min?~~~ \xC5,~ ja...~ \xE6 skulla
     kanskje ikka ha kj\xF8rt hjem i g\xE5r"
   prompt: 
