@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CursorDisplay : MonoBehaviour
+public class HandInteractor : MonoBehaviour
 {
+    [HideInInspector]
+    public Pickupable holding;
+
     [SerializeField]
     Vector2 hotspot = Vector2.zero;
 

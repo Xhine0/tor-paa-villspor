@@ -8,14 +8,15 @@ public class Pickupable : MonoBehaviour
     private int heldSortOrder = 11;
     private int prevOrder = 0;
 
-    private SpriteRenderer sr;
-    private CursorDisplay cd;
+    [HideInInspector]
+    public SpriteRenderer sr;
+    private HandInteractor hi;
     private Vector3 prevPos;
     private bool holding = false;
 
     private void Awake()
     {
-        cd = FindObjectOfType<CursorDisplay>();
+        hi = FindObjectOfType<HandInteractor>();
     }
 
     private void Start()
@@ -28,12 +29,13 @@ public class Pickupable : MonoBehaviour
         if (holding)
             return;
 
-        cd.SetGrabCursor();
+        hi.SetGrabCursor();
         prevPos = transform.position;
     }
 
     private void OnMouseDown()
     {
+        hi.holding = this;
         holding = true;
         prevOrder = sr.sortingOrder;
         sr.sortingOrder = heldSortOrder;
@@ -42,6 +44,7 @@ public class Pickupable : MonoBehaviour
 
     private void OnMouseUp()
     {
+        hi.holding = null;
         holding = false;
         sr.sortingOrder = prevOrder;
         StopAllCoroutines();
@@ -50,7 +53,7 @@ public class Pickupable : MonoBehaviour
 
     private void OnMouseExit()
     {
-        cd.SetDefaultCursor();
+        hi.SetDefaultCursor();
     }
 
     IEnumerator Held()
