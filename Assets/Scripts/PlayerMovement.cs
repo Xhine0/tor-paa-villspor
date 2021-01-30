@@ -26,7 +26,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 startPos;
     private float clickTime;
     private float destinationTime;
-    // Start is called before the first frame update
+    private bool mouseActive = true;
+    public bool MouseActive { get => mouseActive; set => mouseActive = value; }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,10 +36,12 @@ public class PlayerMovement : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        HandleMouse();
+        if (mouseActive)
+        {
+            HandleMouse();
+        }
 
         // Always set this because we are lazy
         anim.SetBool("isWalking", isWalking);
