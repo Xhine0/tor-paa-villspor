@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float colliderResolveDist = 0.05f;
 
+	public float minScale = 0.75f, maxScale = 2;
+
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
@@ -38,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+		transform.localScale = Vector3.one * ((maxScale - minScale) * (1 - Camera.main.WorldToViewportPoint(transform.position).y) + minScale);
+
         if (mouseActive)
         {
             HandleMouse();

@@ -1190,7 +1190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c86965043aad443a71273ca1c516e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScene: ThorsLivingroom
 --- !u!4 &712175610
 Transform:
   m_ObjectHideFlags: 0

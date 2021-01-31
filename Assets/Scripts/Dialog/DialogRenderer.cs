@@ -29,6 +29,11 @@ public class DialogRenderer : MonoBehaviour {
 
 		speaker.Stop();
 		panel.SetActive(node != null);
+		
+		try {
+			FindObjectOfType<PlayerMovement>().MouseActive = node == null;
+		} catch (System.NullReferenceException) { }
+
 		if (node == null) {
 			node = DialogNode.Default();
 			return;
