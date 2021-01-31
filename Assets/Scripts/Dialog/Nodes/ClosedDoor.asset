@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6921aec269d4c349917e2965f37b1e9, type: 3}
-  m_Name: Car
+  m_Name: ClosedDoor
   m_EditorClassIdentifier: 
   title: Tor
-  message: "K\xE6m faen har kj\xF8rt ned pl\xE6nen min?~~~ \xC5,~ ja...~ \xE6 skulla
-    kanskje ikka ha kj\xF8rt hjem i g\xE5r"
+  message: "Faen, det e l\xE5st"
   prompt: 
   clips:
-  - {fileID: 8300000, guid: 1aa2a5aad2e727b499d243b00845e351, type: 3}
-  loop: 0
+  - {fileID: 8300000, guid: e33c63d64a73cbf43b8566849891542f, type: 3}
+  - {fileID: 8300000, guid: c492c774e5c63b94d872bf51e1cbcdcd, type: 3}
+  - {fileID: 8300000, guid: 95ddaa7698325734ca37c3a41d603576, type: 3}
+  loopConversation: 0
   options: []

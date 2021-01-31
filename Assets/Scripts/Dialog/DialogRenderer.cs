@@ -37,7 +37,7 @@ public class DialogRenderer : MonoBehaviour {
 
 		if (setRoot) root = node;
 		this.node = node;
-		if (node.clip != null) speaker.PlayOneShot(node.clip);
+		if (node.clips.Length > 0) speaker.PlayOneShot(node.clips[Random.Range(0, node.clips.Length)]);
 		
 		for (int i = 0; i < buttons.Length; i++) {
 			bool drawOption = i < node.options.Length;
@@ -56,7 +56,7 @@ public class DialogRenderer : MonoBehaviour {
 				output.text = node.message.Replace("~", "");
 			} else if (node.options.Length == 0) {
 				// Leaf reached
-				Render(node.loop ? root : null);
+				Render(node.loopConversation ? root : null);
 			}
 		}
 
