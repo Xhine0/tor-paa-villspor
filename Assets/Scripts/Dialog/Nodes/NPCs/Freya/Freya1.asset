@@ -16,6 +16,7 @@ MonoBehaviour:
   message: "E du oppe allerede Tor? Tenkte du kom til \xE5 sove lenge siden du var
     s\xE5 full i g\xE5r..."
   prompt: 
+  setPref: lokeAppeared
   clips:
   - {fileID: 8300000, guid: 5e2f3bcbe4d5481429f1c6d026e71e0d, type: 3}
   options:

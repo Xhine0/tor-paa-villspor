@@ -41,6 +41,10 @@ public class DialogRenderer : MonoBehaviour {
 
 		this.node = node;
 
+		if (node.setPref.Length != 0) {
+			PlayerPrefs.SetInt(node.setPref, 1);
+		}
+
 		title.text = node.title;
 		if (visited.Contains(node.name)) {
 			FinishWrite();
