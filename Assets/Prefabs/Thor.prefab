@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderResolveDist: 0.08
+  minScale: 0.75
+  maxScale: 2
 --- !u!50 &2939870442109003766
 Rigidbody2D:
   serializedVersion: 4
