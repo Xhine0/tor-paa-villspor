@@ -51,9 +51,10 @@ public class DialogRenderer : MonoBehaviour {
 		}
 		else {
 			visited.Add(node.name);
-			if (node.clips.Length > 0) {
-				speaker.PlayOneShot(node.clips[Random.Range(0, node.clips.Length)]);
-			}
+		}
+
+		if (node.clips.Length > 0) {
+			speaker.PlayOneShot(node.clips[Random.Range(0, node.clips.Length)]);
 		}
 
 		for (int i = 0; i < buttons.Length; i++) {
