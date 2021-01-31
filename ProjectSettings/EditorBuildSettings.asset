@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RoadToFroya.unity
     guid: 382f41e928d58d44e935f96a0f8bf81a
+  - enabled: 1
+    path: Assets/Scenes/GardenOfFroya.unity
+    guid: fc56a37ee9ad40f46be5bed162254c99
   m_configObjects: {}
