@@ -25,6 +25,7 @@ public class HandInteractor : MonoBehaviour
     private Pickupable holding;
     public Pickupable Holding { get => holding; }
 
+    public bool handleDrop = true;
     private Vector3 prevPos;
     private InventorySlot prevSlot;
     private bool usedPos;
@@ -82,12 +83,16 @@ public class HandInteractor : MonoBehaviour
 
     private void DropHolding()
     {
-        if (usedPos)
+        if (handleDrop)
         {
-            holding.transform.position = prevPos;
-        } else
-        {
-            prevSlot.StorePickupable(holding);
+            if (usedPos)
+            {
+                holding.transform.position = prevPos;
+            }
+            else
+            {
+                prevSlot.StorePickupable(holding);
+            }
         }
         holding.sr.sortingOrder = prevOrder;
         holding = null;

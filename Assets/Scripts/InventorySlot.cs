@@ -58,7 +58,12 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         selected = true;
         if (stored)
+        {
             hi.SetGrabCursor();
+        } else
+        {
+            hi.handleDrop = false;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -67,6 +72,8 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         pBuffer = null;
         if (!hi.Holding)
             hi.SetDefaultCursor();
+
+        hi.handleDrop = true;
     }
 
 
