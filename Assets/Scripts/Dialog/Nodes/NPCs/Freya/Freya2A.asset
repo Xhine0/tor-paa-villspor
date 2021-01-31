@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Freya2A
   m_EditorClassIdentifier: 
   title: Tor
-  message: "Har du sett biln\xF8klene mine?"
+  message: "Har du sett biln\xF8klan mine?"
   prompt: 
   clips:
   - {fileID: 8300000, guid: dc9a22503841abe4e838a89d93a2fc75, type: 3}

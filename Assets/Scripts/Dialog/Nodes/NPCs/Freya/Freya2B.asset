@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Freya2B
   m_EditorClassIdentifier: 
   title: Tor
-  message: "Hvem var p\xE5 festen i g\xE5r?"
+  message: "K\xE6m var p\xE5 festen i g\xE5r?"
   prompt: 
   clips:
   - {fileID: 8300000, guid: 3ff7219198e3a1741ad9195aa3951584, type: 3}

@@ -29,7 +29,13 @@ public class PlayerMovement : MonoBehaviour
     private float clickTime;
     private float destinationTime;
     private bool mouseActive = true;
-    public bool MouseActive { get => mouseActive; set => mouseActive = value; }
+    public bool MouseActive {
+		get => mouseActive;
+		set {
+			mouseActive = value;
+			if (!value) isWalking = false;
+		}
+	}
 
     void Start()
     {

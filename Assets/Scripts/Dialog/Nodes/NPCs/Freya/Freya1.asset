@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Freya1
   m_EditorClassIdentifier: 
   title: Freya
-  message: "Er du oppe allerede Tor? Tenkte du kom til \xE5 sove lenge siden du var
+  message: "E du oppe allerede Tor? Tenkte du kom til \xE5 sove lenge siden du var
     s\xE5 full i g\xE5r..."
   prompt: 
   clips:

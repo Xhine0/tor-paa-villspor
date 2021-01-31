@@ -16,8 +16,5 @@ MonoBehaviour:
   message: "Faen, det e l\xE5st"
   prompt: 
   clips:
-  - {fileID: 8300000, guid: e33c63d64a73cbf43b8566849891542f, type: 3}
-  - {fileID: 8300000, guid: c492c774e5c63b94d872bf51e1cbcdcd, type: 3}
-  - {fileID: 8300000, guid: 95ddaa7698325734ca37c3a41d603576, type: 3}
-  loopConversation: 0
+  - {fileID: 8300000, guid: 6da6800d91b0d6442bce883fab1d0489, type: 3}
   options: []
