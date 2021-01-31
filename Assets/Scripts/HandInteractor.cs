@@ -99,6 +99,8 @@ public class HandInteractor : MonoBehaviour
 
     private void DropHolding()
     {
+        SetDefaultCursor();
+
         if (destination)
         {
             if (destination.Interact(holding) && destination.consumeItem)
@@ -126,7 +128,6 @@ public class HandInteractor : MonoBehaviour
 
         holding.sr.sortingOrder = prevOrder;
         holding = null;
-        SetDefaultCursor();
     }
 
     public void SetDefaultCursor()
