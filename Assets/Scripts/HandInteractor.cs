@@ -28,6 +28,7 @@ public class HandInteractor : MonoBehaviour
     public bool handleDrop = true;
     private Vector3 prevPos;
     private InventorySlot prevSlot;
+    public PickupableDestination destination;
     private bool usedPos;
     private int prevOrder;
 
@@ -53,6 +54,16 @@ public class HandInteractor : MonoBehaviour
         holding.transform.position = worldMousePos;
     }
 
+    public void RegisterDestination(PickupableDestination pd)
+    {
+        destination = pd;
+    }
+
+    public void UnRegisterDestination()
+    {
+        destination = null;
+    }
+
     public void SetHolding(Pickupable holding, Vector3 prevPos)
     {
         CommonSetHolding(holding);
@@ -75,6 +86,11 @@ public class HandInteractor : MonoBehaviour
         if (this.holding)
             Debug.LogError($"Called SetHolding while holding object! held: {this.holding.name}, received: {holding.name}");
 #endif
+        foreach (var c in holding.GetComponents<Collider2D>())
+        {
+            c.enabled = false;
+        }
+         
         this.holding = holding;
         DontDestroyOnLoad(holding);
         prevOrder = holding.sr.sortingOrder;
@@ -83,6 +99,14 @@ public class HandInteractor : MonoBehaviour
 
     private void DropHolding()
     {
+        if (destination)
+        {
+            if (destination.Interact(holding) && destination.consumeItem)
+            {
+                return;
+            }
+        }
+
         if (handleDrop)
         {
             if (usedPos)
@@ -94,6 +118,12 @@ public class HandInteractor : MonoBehaviour
                 prevSlot.StorePickupable(holding);
             }
         }
+
+        foreach (var c in holding.GetComponents<Collider2D>())
+        {
+            c.enabled = true;
+        }
+
         holding.sr.sortingOrder = prevOrder;
         holding = null;
         SetDefaultCursor();
