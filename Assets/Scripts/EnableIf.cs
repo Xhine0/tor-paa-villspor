@@ -11,6 +11,16 @@ public class EnableIf : MonoBehaviour {
 	}
 
 	public void Check() {
-		gameObject.SetActive(PlayerPrefs.GetInt(prefName) == (condition ? 1 : 0));
+		bool state = PlayerPrefs.GetInt(prefName) == (condition ? 1 : 0);
+
+		foreach (Behaviour x in GetComponentsInChildren<Behaviour>()) {
+			if (GetType() != x.GetType()) {
+				x.enabled = state;
+			}
+		}
+
+		foreach (Renderer x in GetComponentsInChildren<Renderer>()) {
+			x.enabled = state;
+		}
 	}
 }
