@@ -11,18 +11,16 @@ public class DialogRenderer : MonoBehaviour {
 
 	private float timer;
 	private int charI;
-
-	private DialogNode root;
+	
 	private DialogNode node;
 
 	private void Start() {
-		root = DialogNode.Default();
 		node = DialogNode.Default();
 		
 		panel.SetActive(false);
 	}
 
-	public void Render(DialogNode node, bool setRoot=true) {
+	public void Render(DialogNode node) {
 		charI = 0;
 		timer = Time.time;
 
@@ -34,18 +32,18 @@ public class DialogRenderer : MonoBehaviour {
 		}
 		output.text = "";
 		title.text = node.title;
-
-		if (setRoot) root = node;
+		
 		this.node = node;
 		if (node.clips.Length > 0) speaker.PlayOneShot(node.clips[Random.Range(0, node.clips.Length)]);
 		
+		bool drawOptions = node.options.Length >= 2;
 		for (int i = 0; i < buttons.Length; i++) {
-			bool drawOption = i < node.options.Length;
-			if (drawOption) {
-				buttons[i].GetComponentInChildren<Text>().text = node.options[i].prompt;
+			if (drawOptions) {
+				string prompt = node.options[i].prompt;
+				buttons[i].GetComponentInChildren<Text>().text = prompt.Length == 0 ? node.options[i].message : prompt;
 				buttons[i].node = node.options[i];
 			}
-			buttons[i].gameObject.SetActive(drawOption);
+			buttons[i].gameObject.SetActive(drawOptions);
 		}
 	}
 
@@ -54,9 +52,13 @@ public class DialogRenderer : MonoBehaviour {
 			if (charI < node.message.Length) {
 				charI = node.message.Length;
 				output.text = node.message.Replace("~", "");
-			} else if (node.options.Length == 0) {
+			}
+			else if (node.options.Length == 1) {
+				Render(node.options[0]);
+			}
+			else if (node.options.Length == 0) {
 				// Leaf reached
-				Render(node.loopConversation ? root : null);
+				Render(null);
 			}
 		}
 
