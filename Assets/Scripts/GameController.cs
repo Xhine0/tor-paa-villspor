@@ -7,7 +7,6 @@ public class GameController : MonoBehaviour {
 	public string startScene = "ThorsLivingroom";
 
 	private void Start() {
-		PlayerPrefs.DeleteAll();  // DEBUG
 		PlayerPrefs.SetString("activeScene", startScene);
 		LoadScene(startScene, false);
 	}

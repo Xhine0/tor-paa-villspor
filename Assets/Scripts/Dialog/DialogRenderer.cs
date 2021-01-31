@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogRenderer : MonoBehaviour {
@@ -14,15 +15,17 @@ public class DialogRenderer : MonoBehaviour {
 	
 	private DialogNode node;
 
+	private HashSet<string> visited = new HashSet<string>();
+
 	private void Start() {
 		node = DialogNode.Default();
-		
 		panel.SetActive(false);
 	}
 
 	public void Render(DialogNode node) {
 		charI = 0;
 		timer = Time.time;
+		output.text = "";
 
 		speaker.Stop();
 		panel.SetActive(node != null);
@@ -30,12 +33,20 @@ public class DialogRenderer : MonoBehaviour {
 			node = DialogNode.Default();
 			return;
 		}
-		output.text = "";
-		title.text = node.title;
-		
+
 		this.node = node;
-		if (node.clips.Length > 0) speaker.PlayOneShot(node.clips[Random.Range(0, node.clips.Length)]);
-		
+
+		title.text = node.title;
+		if (visited.Contains(node.name)) {
+			FinishWrite();
+		}
+		else {
+			visited.Add(node.name);
+			if (node.clips.Length > 0) {
+				speaker.PlayOneShot(node.clips[Random.Range(0, node.clips.Length)]);
+			}
+		}
+
 		for (int i = 0; i < buttons.Length; i++) {
 			bool drawOptions = node.options.Length >= 2 && i < node.options.Length;
 			if (drawOptions) {
@@ -47,11 +58,15 @@ public class DialogRenderer : MonoBehaviour {
 		}
 	}
 
+	private void FinishWrite() {
+		charI = node.message.Length;
+		output.text = node.message.Replace("~", "");
+	}
+
 	private void Update() {
 		if (panel.activeInHierarchy && Input.GetMouseButtonDown(0)) {
 			if (charI < node.message.Length) {
-				charI = node.message.Length;
-				output.text = node.message.Replace("~", "");
+				FinishWrite();
 			}
 			else if (node.options.Length == 1) {
 				Render(node.options[0]);
