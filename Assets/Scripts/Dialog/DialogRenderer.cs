@@ -36,8 +36,8 @@ public class DialogRenderer : MonoBehaviour {
 		this.node = node;
 		if (node.clips.Length > 0) speaker.PlayOneShot(node.clips[Random.Range(0, node.clips.Length)]);
 		
-		bool drawOptions = node.options.Length >= 2;
 		for (int i = 0; i < buttons.Length; i++) {
+			bool drawOptions = node.options.Length >= 2 && i < node.options.Length;
 			if (drawOptions) {
 				string prompt = node.options[i].prompt;
 				buttons[i].GetComponentInChildren<Text>().text = prompt.Length == 0 ? node.options[i].message : prompt;

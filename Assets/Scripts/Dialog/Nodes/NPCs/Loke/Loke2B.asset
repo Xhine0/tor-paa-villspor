@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6921aec269d4c349917e2965f37b1e9, type: 3}
-  m_Name: Loke-3B
+  m_Name: Loke2B
   m_EditorClassIdentifier: 
-  title: Loke
-  message: Nei
+  title: Tor
+  message: "Gi meg n\xF8klan"
   prompt: 
   clips:
-  - {fileID: 8300000, guid: 91f426de878f0d94e9605cb1e16392d8, type: 3}
+  - {fileID: 8300000, guid: 86ea52e874d9400499ba4ce64ee53f5e, type: 3}
   options:
-  - {fileID: 11400000, guid: 9269a7e88c9d06c4883cb0fc8d3b52e3, type: 2}
+  - {fileID: 11400000, guid: 9eae38ea7548eaa4f8510ff6811fc8d0, type: 2}

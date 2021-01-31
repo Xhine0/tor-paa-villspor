@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6921aec269d4c349917e2965f37b1e9, type: 3}
-  m_Name: Loke-2A
+  m_Name: Loke2A
   m_EditorClassIdentifier: 
   title: Tor
   message: Hade
