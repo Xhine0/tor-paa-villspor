@@ -8,12 +8,17 @@ public class GameController : MonoBehaviour {
 		LoadScene(PlayerPrefs.GetString("activeScene"), false);
 	}
 
-	public void LoadScene(string name, bool unload=true) {
+	public void LoadScene(string name, bool unload) {
 		if (unload) {
 			SceneManager.UnloadSceneAsync(PlayerPrefs.GetString("activeScene"));
 		}
 		PlayerPrefs.SetString("activeScene", name);
 		FindObjectOfType<DialogRenderer>().Render(null);
 		SceneManager.LoadScene(name, LoadSceneMode.Additive);
+	}
+	public void LoadScene(string name) => LoadScene(name, true);
+
+	public void ExitGame() {
+		SceneManager.LoadScene("MainMenu");
 	}
 }
