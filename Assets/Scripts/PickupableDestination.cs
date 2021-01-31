@@ -16,9 +16,7 @@ public class PickupableDestination : MonoBehaviour {
     }
 
     public bool Interact(Pickupable item) {
-        Debug.Log($"{itemName}, {item.name}");
         if (item.name.Equals(itemName)) {
-            Debug.Log("hello");
 			PlayerPrefs.SetInt(prefName, state ? 1 : 0);
 			if (consumeItem) {
 				Destroy(item.gameObject);
@@ -35,13 +33,11 @@ public class PickupableDestination : MonoBehaviour {
 
     private void OnMouseEnter()
     {
-        Debug.Log("heelo");
         hi.RegisterDestination(this);
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("goodbye");
         hi.UnRegisterDestination();
     }
 }
