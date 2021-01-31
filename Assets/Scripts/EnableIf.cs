@@ -7,6 +7,10 @@ public class EnableIf : MonoBehaviour {
 	public string prefName;
 
 	private void Start() {
+		Check();
+	}
+
+	public void Check() {
 		gameObject.SetActive(PlayerPrefs.GetInt(prefName) == (condition ? 1 : 0));
 	}
 }

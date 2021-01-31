@@ -4,11 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
-	public string startScene = "ThorsLivingroom";
-
 	private void Start() {
-		PlayerPrefs.SetString("activeScene", startScene);
-		LoadScene(startScene, false);
+		LoadScene(PlayerPrefs.GetString("activeScene"), false);
 	}
 
 	public void LoadScene(string name, bool unload=true) {
