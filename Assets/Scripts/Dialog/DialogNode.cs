@@ -10,6 +10,5 @@ public class DialogNode : ScriptableObject {
 	public string message = "";
 	public string prompt = "";
 	public AudioClip[] clips = new AudioClip[0];
-	public bool loopConversation;
 	public DialogNode[] options = new DialogNode[0];
 }

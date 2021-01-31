@@ -13,6 +13,6 @@ public class DialogButton : MonoBehaviour {
 	}
 
 	private void Activate() {
-		renderer.Render(node, setRoot: false);
+		renderer.Render(node);
 	}
 }
