@@ -54,7 +54,7 @@ public class HandInteractor : MonoBehaviour
 
     public void SetHolding(Pickupable holding, Vector3 prevPos)
     {
-        HandleHoldingSortOrder(holding);
+        CommonSetHolding(holding);
         this.holding = holding;
         this.prevPos = prevPos;
         usedPos = true;
@@ -62,18 +62,20 @@ public class HandInteractor : MonoBehaviour
 
     public void SetHolding(Pickupable holding, InventorySlot prevSlot)
     {
-        HandleHoldingSortOrder(holding);
-        this.holding = holding;
+        CommonSetHolding(holding);
+        
         this.prevSlot = prevSlot;
         usedPos = false;
     }
 
-    private void HandleHoldingSortOrder(Pickupable holding)
+    private void CommonSetHolding(Pickupable holding)
     {
 #if DEBUG 
         if (this.holding)
             Debug.LogError($"Called SetHolding while holding object! held: {this.holding.name}, received: {holding.name}");
 #endif
+        this.holding = holding;
+        DontDestroyOnLoad(holding);
         prevOrder = holding.sr.sortingOrder;
         holding.sr.sortingOrder = holdOrder;
     }
