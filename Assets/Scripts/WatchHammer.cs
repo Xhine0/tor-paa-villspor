@@ -17,9 +17,13 @@ public class WatchHammer : MonoBehaviour
         if (!thorsHammer.gameObject.activeSelf && !firedEvent)
         {
             firedEvent = true;
-            alvisStanding.SetActive(true);
-            gameObject.SetActive(false);
+            // alvisStanding.SetActive(true);
+            // gameObject.SetActive(false);
             PlayerPrefs.SetInt("hasHammer", 1);
+
+			foreach (EnableIf x in FindObjectsOfType<EnableIf>()) {
+				x.Check();
+			}
         }
     }
 }
