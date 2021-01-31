@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickupableDestination : MonoBehaviour {
 	public string itemName;
-	public bool consumeItem;
+	public bool consumeItem = true;
 	public string prefName;
 	public bool state;
 

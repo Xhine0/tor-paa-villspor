@@ -1972,8 +1972,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Key
+  consumeItem: 1
   prefName: doorUnlocked
-  state: 0
+  state: 1
 --- !u!1 &1567275394
 GameObject:
   m_ObjectHideFlags: 0
