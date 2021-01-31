@@ -6,17 +6,13 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private enum UserAction
-    {
-        Storing,
-        Retreiveing
-    }
+
     private HandInteractor hi;
     private bool selected;
-    private Pickupable recorded;
+    private Pickupable pBuffer; // to be stored if hand drop item
+    private Pickupable stored;
     private Image image;
     private Color prevColor;
-    private UserAction action;
 
     private void Awake()
     {
@@ -30,47 +26,46 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (!selected)
             return;
 
-        if (hi.holding && !recorded)
-            recorded = hi.holding;
+        if (hi.Holding && !pBuffer)
+            pBuffer = hi.Holding;
 
-        if (!Input.GetMouseButtonUp(0) || !recorded)
-            return;
-
-        if (action == UserAction.Storing)
+        if (Input.GetMouseButtonUp(0) && !stored)
         {
-            image.sprite = recorded.sr.sprite;
-            var newColor = prevColor;
-            newColor.a = 1;
-            image.color = newColor; 
-            recorded.gameObject.SetActive(false);
-            action = UserAction.Retreiveing;
-        } else
+            if (pBuffer)
+                StorePickupable(pBuffer);
+        } else if (Input.GetMouseButtonDown(0) && stored)
         {
             image.sprite = null;
             image.color = prevColor;
-            recorded.gameObject.SetActive(true);
-            hi.holding = recorded;
-            action = UserAction.Storing;
+            stored.gameObject.SetActive(true);
+            hi.SetHolding(stored, this);
+            stored = null;
         }
+    }
+
+    public void StorePickupable(Pickupable p)
+    {
+        pBuffer = null;
+        image.sprite = p.sr.sprite;
+        var newColor = prevColor;
+        newColor.a = 1;
+        image.color = newColor;
+        p.gameObject.SetActive(false);
+        stored = p;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         selected = true;
-        if (recorded)
-        {
+        if (stored)
             hi.SetGrabCursor();
-            action = UserAction.Retreiveing;
-        } else
-        {
-            action = UserAction.Storing;
-        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         selected = false;
-        if (!hi.holding)
+        pBuffer = null;
+        if (!hi.Holding)
             hi.SetDefaultCursor();
     }
 
