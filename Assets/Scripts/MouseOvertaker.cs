@@ -14,12 +14,17 @@ public class MouseOvertaker : MonoBehaviour
             Debug.LogError($"Missing pm reference in {gameObject.name}!");
     }
 
-    private void OnMouseOver()
+    private void OnMouseEnter()
     {
         pm.MouseActive = false;
     }
 
     private void OnMouseExit()
+    {
+        pm.MouseActive = true;
+    }
+
+    private void OnDisable()
     {
         pm.MouseActive = true;
     }
