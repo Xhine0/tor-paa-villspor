@@ -9,6 +9,7 @@ public class DialogNode : ScriptableObject {
 	public string title = "";
 	public string message = "";
 	public string prompt = "";
+	public string setPref = "";
 	public AudioClip[] clips = new AudioClip[0];
 	public DialogNode[] options = new DialogNode[0];
 }
