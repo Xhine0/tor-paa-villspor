@@ -70,16 +70,20 @@ public class DialogRenderer : MonoBehaviour {
 
 	private void Update() {
 		if (panel.activeInHierarchy && Input.GetMouseButtonDown(0)) {
-			if (charI < node.message.Length) {
+			if (charI >= node.message.Length) {
+				if (node.options.Length == 1) {
+					Render(node.options[0]);
+				}
+				else if (node.options.Length == 0) {
+					// Leaf reached
+					Render(null);
+				}
+			}
+#if UNITY_EDITOR
+			else {
 				FinishWrite();
 			}
-			else if (node.options.Length == 1) {
-				Render(node.options[0]);
-			}
-			else if (node.options.Length == 0) {
-				// Leaf reached
-				Render(null);
-			}
+#endif
 		}
 
 		if (Time.time - timer >= 1f / writeSpeed && charI < node.message.Length) {

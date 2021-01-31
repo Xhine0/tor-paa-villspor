@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6921aec269d4c349917e2965f37b1e9, type: 3}
+  m_Name: ThorWakeup
+  m_EditorClassIdentifier: 
+  title: Tor
+  message: "E har s\xE5 vondt i hodet.~~~~~~~~ E m\xE5 p\xE5 butikken...~~~ \xC6
+    m\xE5 ha melk, melk e det som hjelp mot det her.~~ Korr e biln\xF8klan mine?"
+  prompt: 
+  clips:
+  - {fileID: 8300000, guid: 574777958fba2454e9ec6d923e38bdcd, type: 3}
+  options: []
